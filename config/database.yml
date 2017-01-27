@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: MySpotify_production
-  username: MySpotify
+  database: <%= ENV['MYSPOTIFY_DATABASE'] %>
+  username: <%= ENV['MYSPOTIFY_DATABASE_USERNAME'] %>
   password: <%= ENV['MYSPOTIFY_DATABASE_PASSWORD'] %>
