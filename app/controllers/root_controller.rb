@@ -1,7 +1,8 @@
 class RootController < ApplicationController
 
   def home
-    ArtistFinder.find(artist_params.fetch(:name))
+    response = ArtistFinder.find(artist_params.fetch(:name))
+    render json: response
   end
 
   private

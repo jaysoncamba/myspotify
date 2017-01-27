@@ -17,9 +17,9 @@ class ArtistFinder
   def self.find(name)
     response_item = get("/search?type=artist&limit=50&q=#{name}")
     if response_item.success?
-      response_item.to_h["artists"].map do |response|
-        self.new(response["name"], response["id"], response["external_url"],
-           response["genre"], response["href"])
+      JSON.parse(response_item.body)["artists"]["items"].map do |response|
+        {name: response["name"], id: response["id"], external_url: response["external_url"],
+           genre: response["genre"], href: response["href"]}
       end
     else
       # this just raises the net/http response that was raised
